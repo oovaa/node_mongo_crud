@@ -1,6 +1,8 @@
 import express, { json } from 'express'
 import cors from 'cors'
 import init from './db'
+import { employeeRouter } from './router/employees'
+import departmentRouter from './router/departments'
 const app = express()
 
 app.use(json())
@@ -12,9 +14,7 @@ app.get('/', (req, res) => {
   res.json({ status: 'sucess' })
 })
 
+app.use('/api/e', employeeRouter)
+app.use('/api/d', departmentRouter)
 
-
-
-
-
-app.listen(4000, () => console.log('listinign in http://localhost:4000'))
+app.listen(3000, () => console.log('listinign in http://localhost:3000'))
