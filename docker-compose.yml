@@ -1,0 +1,24 @@
+version: '3.8'
+services:
+  mongo-db:
+    image: mongo:6.0
+    container_name: mongo-db
+    restart: unless-stopped
+    volumes:
+      - mongo-data:/data/db
+    ports:
+      - "27017:27017"
+
+  crudserver:
+    build: .
+    container_name: crudserver
+    restart: unless-stopped
+    ports:
+      - "3232:3000"
+    depends_on:
+      - mongo-db
+    environment:
+      - MONGO_URI=mongodb://mongo-db:27017/node_mongo_crud
+
+volumes:
+  mongo-data:
