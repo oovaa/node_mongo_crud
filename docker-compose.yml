@@ -1,6 +1,6 @@
 services:
   mongo-db:
-    image: mongo:6.0
+    image: mongo
     container_name: mongo-db
     restart: unless-stopped
     volumes:
