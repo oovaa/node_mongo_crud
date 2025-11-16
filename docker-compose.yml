@@ -19,5 +19,10 @@ services:
     environment:
       - MONGO_URI=mongodb://mongo-db:27017/node_mongo_crud
 
-volumes:
-  mongo-data:
+  crudui:
+    build: ./app
+    container_name: crudui
+    ports:
+      - 5462:5463
+    depends_on:
+      - mongo-db
