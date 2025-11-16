@@ -12,4 +12,5 @@ RUN bun run build
 EXPOSE 5463
 
 # Vite preview - expose to network (use --host if you need access from other hosts)
-CMD ["bun", "preview", "--host"]
+# CMD ["bun", "preview", "--host"]
+CMD ["bun", "dev" ]
