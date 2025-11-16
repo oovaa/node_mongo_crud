@@ -26,3 +26,5 @@ services:
       - 5462:5463
     depends_on:
       - mongo-db
+volumes:
+  mongo-data:
