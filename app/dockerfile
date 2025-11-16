@@ -1,16 +1,20 @@
 FROM oven/bun:latest
 
+ARG VITE_API_URL="http://crudserver:3000/api"
+ENV VITE_API_URL=${VITE_API_URL}
+
 WORKDIR /app
 
 # Copy entire app into the container (needed for the build step)
 COPY . /
 
-# Install dependencies and build the Vite app
+# Install dependencies and build the Vite app. VITE_API_URL is injected at build time
+# so the built bundle will call the backend service inside the Compose network.
 RUN bun install
 RUN bun run build
 
 EXPOSE 5463
 
-# Vite preview - expose to network (use --host if you need access from other hosts)
-# CMD ["bun", "preview", "--host"]
-CMD ["bun", "dev" ]
+# For development you might use `bun dev`. The production image runs the built files
+# (use `bun preview` for quick testing). Keep dev command commented out here.
+CMD ["bun", "preview", "--host"]

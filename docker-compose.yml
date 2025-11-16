@@ -20,7 +20,10 @@ services:
       - MONGO_URI=mongodb://mongo-db:27017/node_mongo_crud
 
   crudui:
-    build: ./app
+    build:
+      context: ./app
+      args:
+        VITE_API_URL: "http://crudserver:3000/api"
     container_name: crudui
     ports:
       - 5463:5463
