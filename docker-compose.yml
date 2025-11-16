@@ -23,7 +23,7 @@ services:
     build: ./app
     container_name: crudui
     ports:
-      - 5462:5463
+      - 5463:5463
     depends_on:
       - mongo-db
 volumes:
