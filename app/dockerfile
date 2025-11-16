@@ -1,0 +1,22 @@
+FROM ubuntu:22.04
+
+
+# Install curl and unzip for Bun installation
+RUN apt-get update && apt-get install -y curl unzip && rm -rf /var/lib/apt/lists/*
+
+# Install Bun
+RUN curl -fsSL https://bun.sh/install | bash
+
+# Add Bun to PATH
+ENV PATH="/root/.bun/bin:${PATH}"
+
+
+COPY package.json .
+
+RUN bun install
+
+EXPOSE 4173
+
+RUN bun run build
+
+CMD ["bun", "preview"]
