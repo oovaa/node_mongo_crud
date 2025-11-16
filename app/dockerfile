@@ -1,6 +1,6 @@
 FROM oven/bun:latest
 
-ARG VITE_API_URL="http://crudserver:3000/api"
+ARG VITE_API_URL="http://143.110.226.0:3232/api"
 ENV VITE_API_URL=${VITE_API_URL}
 
 WORKDIR /app
@@ -15,6 +15,4 @@ RUN bun run build
 
 EXPOSE 5463
 
-# For development you might use `bun dev`. The production image runs the built files
-# (use `bun preview` for quick testing). Keep dev command commented out here.
 CMD ["bun", "preview", "--host"]

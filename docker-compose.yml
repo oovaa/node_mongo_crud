@@ -22,8 +22,6 @@ services:
   crudui:
     build:
       context: ./app
-      args:
-        VITE_API_URL: "http://crudserver:3000/api"
     container_name: crudui
     ports:
       - 5463:5463
