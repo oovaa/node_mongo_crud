@@ -14,6 +14,16 @@ app.get('/', (req, res) => {
   res.json({ status: 'sucess' })
 })
 
+// simple logger middleware
+app.use((req: express.Request, res: express.Response, next: express.NextFunction) => {
+  const start = Date.now()
+  res.on('finish', () => {
+    const duration = Date.now() - start
+    console.log(`[${new Date().toISOString()}] ${req.method} ${req.originalUrl} ${res.statusCode} - ${duration}ms \n body ${req.body}`)
+  })
+  next()
+})
+
 app.use('/api/e', employeeRouter)
 app.use('/api/d', departmentRouter)
 
